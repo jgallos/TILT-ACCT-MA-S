@@ -63,7 +63,7 @@ public class LoginActivity extends AppCompatActivity {
                 String password = loginPass.getText().toString().trim();
 
                 if (!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)) {
-                    Toast.makeText(LoginActivity.this, "Processing...", Toast.LENGTH_LONG).show();
+                    Toast.makeText(LoginActivity.this, "Processing...", Toast.LENGTH_SHORT).show();
 
                     mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
@@ -71,14 +71,14 @@ public class LoginActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 checkUserExistence();
                             } else {
-                                Toast.makeText(LoginActivity.this, "Can't login. User not found...", Toast.LENGTH_LONG).show();
+                                Toast.makeText(LoginActivity.this, "Can't login. User not found...", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
 
 
                 } else {
-                    Toast.makeText(LoginActivity.this, "Complete all fields", Toast.LENGTH_LONG).show();
+                    Toast.makeText(LoginActivity.this, "Complete all fields", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -96,7 +96,7 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
                     finish();
                 } else {
-                    Toast.makeText(LoginActivity.this, "User not registered!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(LoginActivity.this, "User not registered!", Toast.LENGTH_SHORT).show();
                 }
             }
 

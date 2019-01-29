@@ -38,7 +38,7 @@ public class AvailClassesActivity extends AppCompatActivity {
     }
 
     public void onClickSignin(View view) {
-        Toast.makeText(getApplicationContext(), "signing in...", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), "signing in...", Toast.LENGTH_SHORT).show();
 
 
     }

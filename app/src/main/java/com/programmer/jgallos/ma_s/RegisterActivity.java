@@ -62,7 +62,7 @@ public class RegisterActivity extends AppCompatActivity {
                 final String password = passwordField.getText().toString().trim();
 
                 if (!TextUtils.isEmpty(email) && !TextUtils.isEmpty(username) && !TextUtils.isEmpty(password)) {
-                    Toast.makeText(RegisterActivity.this, "Loading...", Toast.LENGTH_LONG).show();
+                    Toast.makeText(RegisterActivity.this, "Loading...", Toast.LENGTH_SHORT).show();
 
                     mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
@@ -72,18 +72,18 @@ public class RegisterActivity extends AppCompatActivity {
                                 String user_id =mAuth.getCurrentUser().getUid();
                                 DatabaseReference current_user_db = mDatabase.child(user_id);
                                 current_user_db.child("Username").setValue(username);
-                                Toast.makeText(RegisterActivity.this, "Registration Successful", Toast.LENGTH_LONG).show();
+                                Toast.makeText(RegisterActivity.this, "Registration Successful", Toast.LENGTH_SHORT).show();
                                 Intent regIntent = new Intent(RegisterActivity.this, MainActivity.class);
                                 startActivity(regIntent);
                                 finish();
 
                             } else {
-                                Toast.makeText(RegisterActivity.this, "Authentication failed.", Toast.LENGTH_LONG).show();
+                                Toast.makeText(RegisterActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
                 } else {
-                    Toast.makeText(RegisterActivity.this, "Complete all fields.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(RegisterActivity.this, "Complete all fields.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -92,7 +92,7 @@ public class RegisterActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_SHORT)
                         .setAction("Action", null).show();
             }
         });

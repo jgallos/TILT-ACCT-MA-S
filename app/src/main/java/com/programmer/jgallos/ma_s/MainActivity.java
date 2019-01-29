@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
                     Intent loginIntent = new Intent(MainActivity.this, RegisterActivity.class);
                     loginIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(loginIntent);
+                    finish();
                 }
             }
         };
@@ -88,12 +89,14 @@ public class MainActivity extends AppCompatActivity {
             Intent logoutIntent = new Intent(MainActivity.this, RegisterActivity.class);
             logoutIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(logoutIntent);
+            finish();
         }
 
         return super.onOptionsItemSelected(item);
     }
     public void onClickSignin(View view) {
-        Intent i = new Intent(this, RegisterActivity.class);
+        Intent i = new Intent(this, AvailClassesActivity.class);
         startActivity(i);
+        finish();
     }
 }
