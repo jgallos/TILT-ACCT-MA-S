@@ -47,7 +47,9 @@ public class RegisterActivity extends AppCompatActivity {
         loginTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //startActivity(new Intent(RegisterActivity.this, L));
+                startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                finish();
+
             }
         });
 
@@ -73,6 +75,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 Toast.makeText(RegisterActivity.this, "Registration Successful", Toast.LENGTH_LONG).show();
                                 Intent regIntent = new Intent(RegisterActivity.this, MainActivity.class);
                                 startActivity(regIntent);
+                                finish();
 
                             } else {
                                 Toast.makeText(RegisterActivity.this, "Authentication failed.", Toast.LENGTH_LONG).show();
