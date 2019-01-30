@@ -16,6 +16,7 @@ import android.widget.Toast;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 
+import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -86,11 +87,67 @@ public class AddAcadActivity extends AppCompatActivity {
                 if (!TextUtils.isEmpty(recordTitle) && !TextUtils.isEmpty(recordDesc)){
                     final StorageReference filepath = storage.child("Android_Development_images").child(uri.getLastPathSegment());
 
+                    UploadTask uploadTask = filepath.putFile(uri);
 
-                    filepath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+                        @Override
+                        public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                            if (!task.isSuccessful()) {
+                                throw task.getException();
+                            }
+
+                            return filepath.getDownloadUrl();
+                        }
+                    }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Uri> task) {
+                            if (task.isSuccessful()) {
+                                final Uri downloadUrl = task.getResult();
+                                Toast.makeText(AddAcadActivity.this, "Record saved.",Toast.LENGTH_SHORT).show();
+
+                                final DatabaseReference newAcad = databaseRef.push();
+                                mDatabaseUsers.addValueEventListener((new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                        newAcad.child("title").setValue(recordTitle);
+                                        newAcad.child("Desc").setValue(recordDesc);
+                                        newAcad.child("imageUrl").setValue(downloadUrl.toString());
+                                        newAcad.child("uid").setValue(mCurrentUser.getUid());
+                                        newAcad.child("username").setValue(dataSnapshot.child("name").getValue())
+                                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                    @Override
+                                                    public void onComplete(@NonNull Task<Void> task) {
+                                                        if (task.isSuccessful()) {
+                                                            Intent intent = new Intent(AddAcadActivity.this, ClassSession.class);
+                                                            startActivity(intent);
+                                                        }
+                                                    }
+                                                });
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                    }
+                                }));
+
+                            }else {
+                                //handle failure
+                                Toast.makeText(AddAcadActivity.this, "Save failed.",Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+
+
+/*
+
+                   filepath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            //final Uri downloadUrl = filepath.getDownloadUrl();
+                            //final Uri downloadUrl = filepath.getDownloadUrl().toString();
+
+
+
 
                             Toast.makeText(AddAcadActivity.this, "Record saved.",Toast.LENGTH_SHORT).show();
                             final DatabaseReference newAcad = databaseRef.push();
@@ -119,7 +176,7 @@ public class AddAcadActivity extends AppCompatActivity {
                                 }
                             }));
                         }
-                    });
+                    }); */
                 }
             }
         });
