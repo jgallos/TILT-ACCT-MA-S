@@ -10,10 +10,18 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+
+
 public class AvailClassesActivity extends AppCompatActivity {
+
+    //private Spinner subSpinner;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        //subSpinner = (Spinner)findViewById(R.id.subSpinner);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_avail_classes);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -29,7 +37,7 @@ public class AvailClassesActivity extends AppCompatActivity {
         });
 
 
-        Spinner spinner = (Spinner) findViewById(R.id.spinner);
+        Spinner spinner = (Spinner) findViewById(R.id.subSpinner);
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.available_classes, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -38,8 +46,13 @@ public class AvailClassesActivity extends AppCompatActivity {
     }
 
     public void onClickSignin(View view) {
-        Toast.makeText(getApplicationContext(), "signing in...", Toast.LENGTH_SHORT).show();
 
+
+
+        Spinner spinnerContent = (Spinner)findViewById(R.id.subSpinner);
+
+        final String subject = spinnerContent.getSelectedItem().toString();
+        Toast.makeText(getApplicationContext(), subject, Toast.LENGTH_SHORT).show();
 
     }
 }
