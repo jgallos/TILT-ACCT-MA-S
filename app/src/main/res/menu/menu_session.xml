@@ -6,8 +6,11 @@
     tools:context="com.programmer.jgallos.ma_s.ClassSession">
 
     <item
+        android:id="@+id/action_viewAcad"
+        android:title="Academic records"
+        app:showAsAction="always" />
+    <item
         android:id="@+id/action_addAcad"
         android:orderInCategory="100"
-        android:title="Add acad record"
-        app:showAsAction="always" />
+        android:title="Add record" />
 </menu>

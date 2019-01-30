@@ -16,4 +16,5 @@
     <string name="title_activity_register">RegisterActivity</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="title_activity_add_acad">AddAcadActivity</string>
+    <string name="title_activity_view_acad">ViewAcadActivity</string>
 </resources>

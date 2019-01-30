@@ -137,47 +137,7 @@ public class AddAcadActivity extends AppCompatActivity {
                             }
                         }
                     });
-
-
-/*
-
-                   filepath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            //final Uri downloadUrl = filepath.getDownloadUrl().toString();
-
-
-
-
-                            Toast.makeText(AddAcadActivity.this, "Record saved.",Toast.LENGTH_SHORT).show();
-                            final DatabaseReference newAcad = databaseRef.push();
-                            mDatabaseUsers.addValueEventListener((new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                    newAcad.child("title").setValue(recordTitle);
-                                    newAcad.child("Desc").setValue(recordDesc);
-                                    newAcad.child("imageUrl").setValue(filepath.getDownloadUrl().toString());
-                                    newAcad.child("uid").setValue(mCurrentUser.getUid());
-                                    newAcad.child("username").setValue(dataSnapshot.child("name").getValue())
-                                            .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                @Override
-                                                public void onComplete(@NonNull Task<Void> task) {
-                                                    if (task.isSuccessful()) {
-                                                        Intent intent = new Intent(AddAcadActivity.this, ClassSession.class);
-                                                        startActivity(intent);
-                                                    }
-                                                }
-                                            });
-                                }
-
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                                }
-                            }));
-                        }
-                    }); */
-                }
+               }
             }
         });
 

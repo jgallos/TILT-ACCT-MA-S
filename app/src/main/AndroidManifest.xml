@@ -39,7 +39,11 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".AddAcadActivity"
-            android:label="Add Acad Record"
+            android:label="Add Record"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ViewAcadActivity"
+            android:label="Academic Records"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
