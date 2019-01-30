@@ -7,10 +7,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+import android.widget.Toast;
+
 public class ClassSession extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_class_session);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -24,6 +29,13 @@ public class ClassSession extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        Spinner spinner = (Spinner) findViewById(R.id.spinnerLevel);
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.feedback_level45, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+
     }
 
 }

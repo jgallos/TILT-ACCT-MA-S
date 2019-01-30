@@ -1,5 +1,6 @@
 package com.programmer.jgallos.ma_s;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -53,6 +54,7 @@ public class AvailClassesActivity extends AppCompatActivity {
 
         final String subject = spinnerContent.getSelectedItem().toString();
         Toast.makeText(getApplicationContext(), subject, Toast.LENGTH_SHORT).show();
-
+        startActivity(new Intent(AvailClassesActivity.this, ClassSession.class));
+        finish();
     }
 }
