@@ -110,7 +110,7 @@ public class AddAcadActivity extends AppCompatActivity {
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                         newAcad.child("title").setValue(recordTitle);
-                                        newAcad.child("Desc").setValue(recordDesc);
+                                        newAcad.child("desc").setValue(recordDesc);
                                         newAcad.child("imageUrl").setValue(downloadUrl.toString());
                                         newAcad.child("uid").setValue(mCurrentUser.getUid());
                                         newAcad.child("username").setValue(dataSnapshot.child("name").getValue())
@@ -120,6 +120,7 @@ public class AddAcadActivity extends AppCompatActivity {
                                                         if (task.isSuccessful()) {
                                                             Intent intent = new Intent(AddAcadActivity.this, ClassSession.class);
                                                             startActivity(intent);
+                                                            finish();
                                                         }
                                                     }
                                                 });

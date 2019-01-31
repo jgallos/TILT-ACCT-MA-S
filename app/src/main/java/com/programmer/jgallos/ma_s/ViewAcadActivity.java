@@ -82,8 +82,11 @@ public class ViewAcadActivity extends AppCompatActivity {
             protected void populateViewHolder(AcadViewHolder viewHolder, AcadRecords model, int position) {
                 final String acad_key = getRef(position).getKey().toString();
                 viewHolder.setTitle(model.getTitle());
+
                 viewHolder.setDesc(model.getDesc());
+
                 viewHolder.setImageUrl(getApplicationContext(),model.getImageUrl());
+                //Toast.makeText(ViewAcadActivity.this, model.getImageUrl().toString(), Toast.LENGTH_LONG).show();
                 viewHolder.mView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
