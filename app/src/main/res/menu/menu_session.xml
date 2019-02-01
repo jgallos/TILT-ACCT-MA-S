@@ -14,6 +14,7 @@
         android:orderInCategory="100"
         android:title="Add record" />
     <item
+        android:id="@+id/action_viewAttendance"
         android:orderInCategory="100"
         android:title="Attendance" />
 </menu>

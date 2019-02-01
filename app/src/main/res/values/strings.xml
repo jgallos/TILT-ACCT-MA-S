@@ -17,4 +17,5 @@
     <string name="title_activity_login">LoginActivity</string>
     <string name="title_activity_add_acad">AddAcadActivity</string>
     <string name="title_activity_view_acad">ViewAcadActivity</string>
+    <string name="title_activity_view_attendance">ViewAttendance</string>
 </resources>

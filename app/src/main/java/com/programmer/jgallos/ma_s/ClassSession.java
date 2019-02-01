@@ -56,7 +56,10 @@ public class ClassSession extends AppCompatActivity {
             startActivity(new Intent(ClassSession.this, AddAcadActivity.class));
         } else if (id==R.id.action_viewAcad) {
             startActivity(new Intent(ClassSession.this, ViewAcadActivity.class));
+        } else if (id==R.id.action_viewAttendance) {
+            startActivity(new Intent(ClassSession.this, ViewAttendance.class));
         }
         return super.onOptionsItemSelected(item);
     }
+
 }

@@ -44,6 +44,10 @@
         <activity
             android:name=".ViewAcadActivity"
             android:label="Academic Records"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ViewAttendance"
+            android:label="@string/title_activity_view_attendance"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
