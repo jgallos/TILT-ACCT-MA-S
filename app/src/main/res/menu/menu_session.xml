@@ -13,4 +13,7 @@
         android:id="@+id/action_addAcad"
         android:orderInCategory="100"
         android:title="Add record" />
+    <item
+        android:orderInCategory="100"
+        android:title="Attendance" />
 </menu>
