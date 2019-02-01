@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,6 +24,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.ServerValue;
 
 
 
@@ -64,9 +66,11 @@ public class AvailClassesActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
+
+
         signinBtn = (Button)findViewById(R.id.signinBtn);
 
-        databaseRef = database.getInstance().getReference().child("Android_Development_attendance");
+
         mAuth = FirebaseAuth.getInstance();
         mCurrentUser = mAuth.getCurrentUser();
         mDatabaseUsers = FirebaseDatabase.getInstance().getReference().child("Users").child(mCurrentUser.getUid());
@@ -75,12 +79,16 @@ public class AvailClassesActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(AvailClassesActivity.this, "Signing-in...", Toast.LENGTH_SHORT).show();
-
+                Spinner spinnerContent = (Spinner)findViewById(R.id.subSpinner);
+                final String subject = spinnerContent.getSelectedItem().toString();
+                databaseRef = database.getInstance().getReference().child(subject + "_attendance");
                 final DatabaseReference newAttendance = databaseRef.push();
+
                 mDatabaseUsers.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
+                        newAttendance.child("signin_time").setValue(ServerValue.TIMESTAMP);
                         newAttendance.child("uid").setValue(mCurrentUser.getUid()).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
