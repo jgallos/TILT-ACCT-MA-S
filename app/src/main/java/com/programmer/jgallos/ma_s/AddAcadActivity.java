@@ -18,7 +18,6 @@ import android.support.annotation.NonNull;
 
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -118,7 +117,7 @@ public class AddAcadActivity extends AppCompatActivity {
                                                     @Override
                                                     public void onComplete(@NonNull Task<Void> task) {
                                                         if (task.isSuccessful()) {
-                                                            Intent intent = new Intent(AddAcadActivity.this, ClassSession.class);
+                                                            Intent intent = new Intent(AddAcadActivity.this, ClassSessionActivity.class);
                                                             startActivity(intent);
                                                             finish();
                                                         }

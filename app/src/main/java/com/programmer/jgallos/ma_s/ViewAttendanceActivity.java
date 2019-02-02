@@ -7,16 +7,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-import android.view.Menu;
-import android.view.MenuItem;
-
-import android.content.Context;
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,10 +19,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import com.squareup.picasso.Picasso;
 
-
-public class ViewAttendance extends AppCompatActivity {
+public class ViewAttendanceActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private DatabaseReference mDatabase;
@@ -85,7 +77,7 @@ public class ViewAttendance extends AppCompatActivity {
                 viewHolder.setSignout(model.getSignout());
                 viewHolder.setUid(model.getUid());
 
-                //Toast.makeText(ViewAcadActivity.this, model.getImageUrl().toString(), Toast.LENGTH_LONG).show();
+                //Toast.makeText(ViewAttendanceActivity.this, model.getUid().toString(), Toast.LENGTH_LONG).show();
                 viewHolder.mView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

@@ -12,10 +12,9 @@ import android.view.MenuItem;
 
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 
-public class ClassSession extends AppCompatActivity {
+public class ClassSessionActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,11 +52,11 @@ public class ClassSession extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id==R.id.action_addAcad) {
-            startActivity(new Intent(ClassSession.this, AddAcadActivity.class));
+            startActivity(new Intent(ClassSessionActivity.this, AddAcadActivity.class));
         } else if (id==R.id.action_viewAcad) {
-            startActivity(new Intent(ClassSession.this, ViewAcadActivity.class));
+            startActivity(new Intent(ClassSessionActivity.this, ViewAcadActivity.class));
         } else if (id==R.id.action_viewAttendance) {
-            startActivity(new Intent(ClassSession.this, ViewAttendance.class));
+            startActivity(new Intent(ClassSessionActivity.this, ViewAttendanceActivity.class));
         }
         return super.onOptionsItemSelected(item);
     }

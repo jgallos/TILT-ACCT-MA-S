@@ -16,6 +16,13 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import org.apache.commons.net.ntp.NTPUDPClient;
+import org.apache.commons.net.ntp.TimeInfo;
+
+import java.io.IOException;
+import java.net.InetAddress;
+import java.util.Date;
+
 public class MainActivity extends AppCompatActivity {
 
     private DatabaseReference mDatabase;
@@ -95,8 +102,14 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
     public void onClickSignin(View view) {
-        Intent i = new Intent(this, AvailClassesActivity.class);
-        startActivity(i);
-        finish();
+       // Intent i = new Intent(this, AvailClassesActivity.class);
+       // startActivity(i);
+        //finish();
+        
     }
+
+
+
+
+
 }
