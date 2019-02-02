@@ -3,6 +3,7 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_avail_classes">AvailClassesActivity</string>
     <string name="title_activity_class_session">ClassSession</string>
+    <string name="tt_time_gmt">%1$s</string>
 
     <string-array name="available_classes">
         <item>Calculus</item>

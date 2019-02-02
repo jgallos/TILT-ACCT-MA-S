@@ -36,4 +36,8 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.5.2'
     implementation 'commons-net:commons-net:3.6'
 
+    implementation project(path: ':library')
+    implementation project(path: ':library-extension-rx')
+    implementation "io.reactivex.rxjava2:rxandroid:2.0.2"
+
 }

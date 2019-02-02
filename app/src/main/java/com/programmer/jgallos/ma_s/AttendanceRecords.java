@@ -1,12 +1,12 @@
 package com.programmer.jgallos.ma_s;
 
 public class AttendanceRecords {
-        private String atdate, signin_time, atsignout, uid;
+        private String signin_date, signin_time, signout_time, uid;
 
-        public AttendanceRecords(String atdate, String signin_time, String atsignout, String uid) {
-            this.atdate = atdate;
+        public AttendanceRecords(String signin_date, String signin_time, String signout_time, String uid) {
+            this.signin_date = signin_date;
             this.signin_time = signin_time;
-            this.atsignout = atsignout;
+            this.signout_time = signout_time;
             this.uid = uid;
         }
 
@@ -14,8 +14,8 @@ public class AttendanceRecords {
 
         }
 
-        public void setDate(String atdate) {
-            this.atdate=atdate;
+        public void setDate(String signin_date) {
+            this.signin_date=signin_date;
         }
         /*public  String getUsername() {
             return username;
@@ -29,21 +29,21 @@ public class AttendanceRecords {
             this.signin_time = signin_time;
         }
 
-        public void setSignout(String atsignout) {
-            this.atsignout = atsignout;
+        public void setSignout(String signout_time) {
+            this.signout_time = signout_time;
         }
         public void setUid(String uid) {
         this.uid = uid;
     }
 
         public String getDate() {
-        return atdate;
+        return signin_date;
     }
         public String getSignin() {
         return signin_time;
     }
         public String getSignout() {
-        return atsignout;
+        return signout_time;
     }
         public String getUid() {
         return uid;

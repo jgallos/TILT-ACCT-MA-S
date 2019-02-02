@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import android.support.annotation.NonNull;
@@ -25,11 +26,13 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.DatabaseError;
+import com.instacart.library.truetime.TrueTimeRx;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.TimeZone;
 
 
 public class AvailClassesActivity extends AppCompatActivity {
@@ -89,32 +92,17 @@ public class AvailClassesActivity extends AppCompatActivity {
                 databaseRef = database.getInstance().getReference().child(subject + "_attendance");
                 final DatabaseReference newAttendance = databaseRef.push();
 
-                //final DatabaseReference databaserefForTime = database.getInstance().getReference(".info/serverTimeOffset");
-
-                /*databaserefForTime.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        long offset = dataSnapshot.getValue(Long.class);
-                        long estimatedServerTimeMs = System.currentTimeMillis() +offset;
-                        SimpleDateFormat sdf = new SimpleDateFormat("MMM dd,yyyy HH:mm");
-                        Date resultdate = new Date(estimatedServerTimeMs);
-                        Toast.makeText(AvailClassesActivity.this, sdf.format(resultdate).toString(),Toast.LENGTH_SHORT).show();
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                }); */
-
 
                 mDatabaseUsers.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
+                        String timeHolder;
 
-
-                       //Toast.makeText(AvailClassesActivity.this, timeconverted,Toast.LENGTH_SHORT).show();
+                        timeHolder = updateTime(1);
+                        newAttendance.child("signin_date").setValue(timeHolder);
+                        timeHolder = updateTime(2);
+                        newAttendance.child("signin_time").setValue(timeHolder);
 
                         //newAttendance.child("signin_time").setValue(ServerValue.TIMESTAMP);
                         newAttendance.child("uid").setValue(mCurrentUser.getUid()).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -139,15 +127,31 @@ public class AvailClassesActivity extends AppCompatActivity {
 
     }
 
-    /* public void onClickSignin(View view) {
+    private String updateTime(int flag) {
+        TextView textTime = (TextView) findViewById(R.id.textViewTime);
+
+        if (!TrueTimeRx.isInitialized()) {
+            Toast.makeText(AvailClassesActivity.this, "TrueTime is not yet initialized.", Toast.LENGTH_SHORT).show();
+            return " ";
+        }
+
+        Date trueTime = TrueTimeRx.now();
+        if (flag == 1) {
+            textTime.setText(getString(R.string.tt_time_gmt, _formatDate(trueTime, "yyyy-MM-dd", TimeZone.getTimeZone("GMT+08:00"))));
+
+        } else if (flag==2) {
+            textTime.setText(getString(R.string.tt_time_gmt, _formatDate(trueTime, "HH:mm:ss", TimeZone.getTimeZone("GMT+08:00"))));
+        }
+        return textTime.getText().toString();
+    }
+
+    private String _formatDate(Date date, String pattern, TimeZone timeZone) {
+        DateFormat format = new SimpleDateFormat(pattern, Locale.ENGLISH);
+        format.setTimeZone(timeZone);
+        return format.format(date);
+    }
 
 
 
-        Spinner spinnerContent = (Spinner)findViewById(R.id.subSpinner);
 
-        final String subject = spinnerContent.getSelectedItem().toString();
-        Toast.makeText(getApplicationContext(), subject, Toast.LENGTH_SHORT).show();
-        startActivity(new Intent(AvailClassesActivity.this, ClassSessionActivity.class));
-        finish();
-    } */
 }

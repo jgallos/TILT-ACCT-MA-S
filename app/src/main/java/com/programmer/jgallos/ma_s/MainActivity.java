@@ -102,9 +102,9 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
     public void onClickSignin(View view) {
-       // Intent i = new Intent(this, AvailClassesActivity.class);
-       // startActivity(i);
-        //finish();
+        Intent i = new Intent(this, AvailClassesActivity.class);
+        startActivity(i);
+        finish();
         
     }
 
