@@ -30,6 +30,7 @@ public class ViewAttendanceActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_view_attendance);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -72,12 +73,13 @@ public class ViewAttendanceActivity extends AppCompatActivity {
             @Override
             protected void populateViewHolder(AttendanceViewHolder viewHolder, AttendanceRecords model, int position) {
                 final String attendance_key = getRef(position).getKey().toString();
-                viewHolder.setDate(model.getDate());
-                viewHolder.setSignin(model.getSignin());
-                viewHolder.setSignout(model.getSignout());
-                viewHolder.setUid(model.getUid());
 
-                //Toast.makeText(ViewAttendanceActivity.this, model.getUid().toString(), Toast.LENGTH_LONG).show();
+               viewHolder.setDate(model.getDate());
+               viewHolder.setSignin(model.getSignin());
+               viewHolder.setSignout(model.getSignout());
+               viewHolder.setUid(model.getUid());
+
+               //Toast.makeText(ViewAttendanceActivity.this, model.getSignout().toString(), Toast.LENGTH_LONG).show();
                 viewHolder.mView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -97,23 +99,23 @@ public class ViewAttendanceActivity extends AppCompatActivity {
             mView=itemView;
         }
 
-        public void setDate(String adate) {
+        public void setDate(String date) {
             TextView attendance_date = mView.findViewById(R.id.textDate);
-            attendance_date.setText(adate);
+            attendance_date.setText("Date: " + date);
         }
 
-        public void setSignin(String signin_time) {
+        public void setSignin(String signin) {
             TextView attendance_signin = mView.findViewById(R.id.textSigninTime);
-            attendance_signin.setText(signin_time);
+            attendance_signin.setText("Sign-in Time: " + signin);
         }
 
-        public void setSignout(String asignout) {
+        public void setSignout(String signout) {
             TextView attendance_signout = mView.findViewById(R.id.textSignoutTime);
-            attendance_signout.setText(asignout);
+            attendance_signout.setText("Sign-out Time: " + signout);
         }
         public void setUid(String uid) {
             TextView attendance_uid = mView.findViewById(R.id.textUid);
-            attendance_uid.setText(uid);
+            attendance_uid.setText("User Id: " + uid);
         }
 
 

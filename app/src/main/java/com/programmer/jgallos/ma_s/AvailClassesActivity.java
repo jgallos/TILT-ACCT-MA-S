@@ -100,16 +100,17 @@ public class AvailClassesActivity extends AppCompatActivity {
                         String timeHolder;
 
                         timeHolder = updateTime(1);
-                        newAttendance.child("signin_date").setValue(timeHolder);
+                        newAttendance.child("date").setValue(timeHolder);
                         timeHolder = updateTime(2);
-                        newAttendance.child("signin_time").setValue(timeHolder);
+                        newAttendance.child("signin").setValue(timeHolder);
+                        newAttendance.child("signout").setValue(("default"));
 
                         //newAttendance.child("signin_time").setValue(ServerValue.TIMESTAMP);
                         newAttendance.child("uid").setValue(mCurrentUser.getUid()).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()){
-                                    startActivity(new Intent(AvailClassesActivity.this,ClassSessionActivity.class));
+                                     startActivity(new Intent(AvailClassesActivity.this,ClassSessionActivity.class));
                                 }
                             }
                         });

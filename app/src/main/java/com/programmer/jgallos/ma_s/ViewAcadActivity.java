@@ -125,4 +125,23 @@ public class ViewAcadActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_acad, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id==R.id.action_addAcad2) {
+            startActivity(new Intent(ViewAcadActivity.this, AddAcadActivity.class));
+
+        } else if (id==R.id.action_viewAttendance2) {
+            startActivity(new Intent(ViewAcadActivity.this, ViewAttendanceActivity.class));
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 }

@@ -1,12 +1,15 @@
 package com.programmer.jgallos.ma_s;
 
-public class AttendanceRecords {
-        private String signin_date, signin_time, signout_time, uid;
+import android.util.Log;
 
-        public AttendanceRecords(String signin_date, String signin_time, String signout_time, String uid) {
-            this.signin_date = signin_date;
-            this.signin_time = signin_time;
-            this.signout_time = signout_time;
+public class AttendanceRecords {
+        private String date, signin, signout, uid;
+        private static final String TAG = AttendanceRecords.class.getSimpleName();
+
+        public AttendanceRecords(String date, String signin, String signout, String uid) {
+            this.date = date;
+            this.signin = signin;
+            this.signout = signout;
             this.uid = uid;
         }
 
@@ -14,8 +17,9 @@ public class AttendanceRecords {
 
         }
 
-        public void setDate(String signin_date) {
-            this.signin_date=signin_date;
+        public void setDate(String date) {
+            this.date=date;
+            Log.d(TAG,"Set Date = " + date);
         }
         /*public  String getUsername() {
             return username;
@@ -25,28 +29,37 @@ public class AttendanceRecords {
             this.username = username;
         }*/
 
-        public void setSignin(String signin_time) {
-            this.signin_time = signin_time;
+        public void setSignin(String signin) {
+            Log.d(TAG,"Set signin_time = " + signin);
+
+            this.signin = signin;
         }
 
-        public void setSignout(String signout_time) {
-            this.signout_time = signout_time;
+        public void setSignout(String signout) {
+            this.signout = signout;
         }
         public void setUid(String uid) {
-        this.uid = uid;
+            Log.d(TAG,"Set uid = " + uid);
+
+            this.uid = uid;
     }
 
         public String getDate() {
-        return signin_date;
+            Log.d(TAG,"Pulled Date = " + date);
+            return date;
     }
         public String getSignin() {
-        return signin_time;
+            Log.d(TAG,"Pulled Signin Time = " + signin);
+            return signin;
     }
         public String getSignout() {
-        return signout_time;
+            Log.d(TAG,"Pulled Signout Time = " + signout);
+            return signout;
     }
         public String getUid() {
-        return uid;
+            Log.d(TAG,"Pulled Uid = " + uid);
+
+            return uid;
     }
 }
 
