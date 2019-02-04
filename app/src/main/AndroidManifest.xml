@@ -24,15 +24,15 @@
         </activity>
         <activity
             android:name=".AvailClassesActivity"
-            android:label="Available Classes"
+            android:label="@string/title_activity_avail_classes"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ClassSessionActivity"
-            android:label="Class Session"
+            android:label="@string/title_activity_class_session"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".RegisterActivity"
-            android:label="Registration"
+            android:label="@string/title_activity_register"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".LoginActivity"
@@ -40,11 +40,11 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".AddAcadActivity"
-            android:label="Add Record"
+            android:label="@string/title_activity_add_acad"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ViewAcadActivity"
-            android:label="Academic Records"
+            android:label="@string/title_activity_view_acad"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ViewAttendanceActivity"

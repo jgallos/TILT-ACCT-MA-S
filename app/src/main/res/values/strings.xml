@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">MA-S</string>
+    <string name="app_name">TILT-ACCT: Students</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_avail_classes">AvailClassesActivity</string>
-    <string name="title_activity_class_session">ClassSession</string>
+    <string name="title_activity_avail_classes">Your Classes</string>
+    <string name="title_activity_class_session">Class Session</string>
     <string name="tt_time_gmt">%1$s</string>
 
     <string-array name="available_classes">
@@ -14,9 +14,9 @@
         <item>DEFCON 5</item>
         <item>DEFCON 4</item>
     </string-array>
-    <string name="title_activity_register">RegisterActivity</string>
-    <string name="title_activity_login">LoginActivity</string>
-    <string name="title_activity_add_acad">AddAcadActivity</string>
-    <string name="title_activity_view_acad">ViewAcadActivity</string>
-    <string name="title_activity_view_attendance">ViewAttendance</string>
+    <string name="title_activity_register">Registration</string>
+    <string name="title_activity_login">Login</string>
+    <string name="title_activity_add_acad">Add Record</string>
+    <string name="title_activity_view_acad">Academic Records</string>
+    <string name="title_activity_view_attendance">Attendance</string>
 </resources>
