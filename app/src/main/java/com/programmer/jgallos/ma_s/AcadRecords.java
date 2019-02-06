@@ -3,14 +3,15 @@ package com.programmer.jgallos.ma_s;
 import android.util.Log;
 
 public class AcadRecords {
-    private String title, desc, imageUrl, username;
+    private String title, desc, imageUrl, username, uid;
     private static final String TAG = AcadRecords.class.getSimpleName();
 
-    public AcadRecords(String title, String desc, String imageUrl, String username) {
+    public AcadRecords(String title, String desc, String imageUrl, String username, String uid) {
         this.title = title;
         this.desc = desc;
         this.imageUrl = imageUrl;
         this.username = username;
+        this.uid = uid;
 
     }
 
@@ -48,5 +49,9 @@ public class AcadRecords {
     public String getDesc() {
         Log.d(TAG,desc);
         return desc;
+    }
+
+    public String getUid() {
+        return uid;
     }
 }

@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:ems="10"
-            android:hint="username"
+            android:hint="name"
             android:inputType="textPersonName"
             android:textColorLink="@color/colorAccent" />
 

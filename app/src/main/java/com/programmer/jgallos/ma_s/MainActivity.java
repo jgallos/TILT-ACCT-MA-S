@@ -50,6 +50,9 @@ public class MainActivity extends AppCompatActivity {
                     loginIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(loginIntent);
                     finish();
+                } else {
+
+
                 }
             }
         };
@@ -107,9 +110,5 @@ public class MainActivity extends AppCompatActivity {
         finish();
         
     }
-
-
-
-
 
 }

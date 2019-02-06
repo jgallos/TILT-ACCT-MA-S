@@ -6,6 +6,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.text.TextUtils;
@@ -49,6 +50,8 @@ public class AddAcadActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseUser mCurrentUser;
 
+    private static final String TAG = AcadRecords.class.getSimpleName();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,9 +73,15 @@ public class AddAcadActivity extends AppCompatActivity {
         imageAcad.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent galleryIntent = new Intent(Intent.ACTION_GET_CONTENT);
-                galleryIntent.setType("image/*");
-                startActivityForResult(galleryIntent,GALLERY_REQUEST_CODE);
+                try {
+                    Intent galleryIntent = new Intent(Intent.ACTION_GET_CONTENT);
+
+                    galleryIntent.setType("image/*");
+                    startActivityForResult(galleryIntent, GALLERY_REQUEST_CODE);
+                } catch (Exception e) {
+                    Log.e(TAG,"exception", e);
+                }
+
             }
         });
 
@@ -137,7 +146,7 @@ public class AddAcadActivity extends AppCompatActivity {
                             }
                         }
                     });
-               }
+                }
             }
         });
 

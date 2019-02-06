@@ -22,6 +22,8 @@ import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -31,8 +33,10 @@ public class ViewAcadActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private DatabaseReference mDatabase;
+    private DatabaseReference mDatabaseUsers;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
+    private FirebaseUser mCurrentUser;
 
 
     @Override
@@ -80,19 +84,34 @@ public class ViewAcadActivity extends AppCompatActivity {
         ) {
             @Override
             protected void populateViewHolder(AcadViewHolder viewHolder, AcadRecords model, int position) {
+                mCurrentUser = FirebaseAuth.getInstance().getCurrentUser();
+                mDatabaseUsers = FirebaseDatabase.getInstance().getReference().child("Users").child(mCurrentUser.getUid());
+                //Toast.makeText(ViewAcadActivity.this,mDatabaseUsers.toString(),Toast.LENGTH_LONG).show();
+                //Toast.makeText(ViewAcadActivity.this,model.getUid(),Toast.LENGTH_LONG).show();
+                if (!mDatabaseUsers.toString().equals("https://ma-s-514f2.firebaseio.com/Users/" + model.getUid())) {
+                    viewHolder.mView.setVisibility(View.GONE);
+                    viewHolder.mView.setLayoutParams(new RecyclerView.LayoutParams(0,0));
+                } else {
+                    viewHolder.mView.setVisibility(View.VISIBLE);
+                }
+
+               // if (mDatabaseUsers.toString().equals("https://ma-s-514f2.firebaseio.com/Users/" + model.getUid())) {
                 final String acad_key = getRef(position).getKey().toString();
-                viewHolder.setTitle(model.getTitle());
 
-                viewHolder.setDesc(model.getDesc());
+                    viewHolder.setTitle(model.getTitle());
 
-                viewHolder.setImageUrl(getApplicationContext(),model.getImageUrl());
-                //Toast.makeText(ViewAcadActivity.this, model.getImageUrl().toString(), Toast.LENGTH_LONG).show();
-                viewHolder.mView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
+                    viewHolder.setDesc(model.getDesc());
 
-                    }
-                });
+                    viewHolder.setImageUrl(getApplicationContext(), model.getImageUrl());
+                    //Toast.makeText(ViewAcadActivity.this, model.getImageUrl().toString(), Toast.LENGTH_LONG).show();
+                    viewHolder.mView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                        }
+                    });
+
+
             }
         };
         recyclerView.setAdapter(FBRA);
@@ -123,6 +142,8 @@ public class ViewAcadActivity extends AppCompatActivity {
         }
 
 
+
+
     }
 
     @Override
@@ -137,6 +158,7 @@ public class ViewAcadActivity extends AppCompatActivity {
         int id = item.getItemId();
         if (id==R.id.action_addAcad2) {
             startActivity(new Intent(ViewAcadActivity.this, AddAcadActivity.class));
+
 
         } else if (id==R.id.action_viewAttendance2) {
             startActivity(new Intent(ViewAcadActivity.this, ViewAttendanceActivity.class));

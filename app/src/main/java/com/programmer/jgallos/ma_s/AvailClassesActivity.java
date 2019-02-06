@@ -110,7 +110,10 @@ public class AvailClassesActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()){
-                                     startActivity(new Intent(AvailClassesActivity.this,ClassSessionActivity.class));
+                                    Intent sessionIntent = new Intent(AvailClassesActivity.this, ClassSessionActivity.class);
+                                    sessionIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                    startActivity(sessionIntent);
+                                    finish();
                                 }
                             }
                         });

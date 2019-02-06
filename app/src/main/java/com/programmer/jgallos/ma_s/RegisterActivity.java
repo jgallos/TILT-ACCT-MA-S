@@ -71,7 +71,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 // Sign in success, update UI with the signed-in user's information
                                 String user_id =mAuth.getCurrentUser().getUid();
                                 DatabaseReference current_user_db = mDatabase.child(user_id);
-                                current_user_db.child("Username").setValue(username);
+                                current_user_db.child("name").setValue(username);
                                 Toast.makeText(RegisterActivity.this, "Registration Successful", Toast.LENGTH_SHORT).show();
                                 Intent regIntent = new Intent(RegisterActivity.this, MainActivity.class);
                                 startActivity(regIntent);
