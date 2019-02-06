@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -24,8 +25,10 @@ public class ViewAttendanceActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private DatabaseReference mDatabase;
+    private DatabaseReference mDatabaseUsers;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
+    private FirebaseUser mCurrentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +75,16 @@ public class ViewAttendanceActivity extends AppCompatActivity {
         ) {
             @Override
             protected void populateViewHolder(AttendanceViewHolder viewHolder, AttendanceRecords model, int position) {
+                mCurrentUser = FirebaseAuth.getInstance().getCurrentUser();
+                mDatabaseUsers = FirebaseDatabase.getInstance().getReference().child("Users").child(mCurrentUser.getUid());
+
+                if (!mDatabaseUsers.toString().equals("https://ma-s-514f2.firebaseio.com/Users/" + model.getUid())){
+                    viewHolder.mView.setVisibility(View.GONE);
+                    viewHolder.mView.setLayoutParams(new RecyclerView.LayoutParams(0,0));
+                } else {
+                    viewHolder.mView.setVisibility(View.VISIBLE);
+                }
+                
                 final String attendance_key = getRef(position).getKey().toString();
 
                viewHolder.setDate(model.getDate());
