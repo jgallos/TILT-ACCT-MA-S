@@ -84,7 +84,7 @@ public class ViewAttendanceActivity extends AppCompatActivity {
                 } else {
                     viewHolder.mView.setVisibility(View.VISIBLE);
                 }
-                
+
                 final String attendance_key = getRef(position).getKey().toString();
 
                viewHolder.setDate(model.getDate());

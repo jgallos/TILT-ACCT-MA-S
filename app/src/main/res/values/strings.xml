@@ -16,6 +16,7 @@
     </string-array>
     <string name="title_activity_register">Registration</string>
     <string name="title_activity_login">Login</string>
+    <string name="title_activity_logout">Logout</string>
     <string name="title_activity_add_acad">Add Record</string>
     <string name="title_activity_view_acad">Academic Records</string>
     <string name="title_activity_view_attendance">Attendance</string>
