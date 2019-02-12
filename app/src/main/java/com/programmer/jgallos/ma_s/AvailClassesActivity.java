@@ -97,10 +97,13 @@ public class AvailClassesActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                        String timeHolder;
+                        String timeHolder,signKey;
 
                         timeHolder = updateTime(1);
+
                         newAttendance.child("date").setValue(timeHolder);
+                        signKey = newAttendance.getKey();
+                        Toast.makeText(AvailClassesActivity.this,signKey.toString(),Toast.LENGTH_LONG).show();
                         timeHolder = updateTime(2);
                         newAttendance.child("signin").setValue(timeHolder);
                         newAttendance.child("signout").setValue(("default"));
