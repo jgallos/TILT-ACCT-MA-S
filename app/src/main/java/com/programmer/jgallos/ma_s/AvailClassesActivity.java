@@ -31,7 +31,9 @@ import com.instacart.library.truetime.TrueTimeRx;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 import java.util.TimeZone;
 
 
@@ -97,13 +99,16 @@ public class AvailClassesActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                        String timeHolder,signKey;
+                        String timeHolder;
+                        final String signKey;
+
 
                         timeHolder = updateTime(1);
 
+
                         newAttendance.child("date").setValue(timeHolder);
                         signKey = newAttendance.getKey();
-                        Toast.makeText(AvailClassesActivity.this,signKey.toString(),Toast.LENGTH_LONG).show();
+                        //Toast.makeText(AvailClassesActivity.this,signKey.toString(),Toast.LENGTH_LONG).show();
                         timeHolder = updateTime(2);
                         newAttendance.child("signin").setValue(timeHolder);
                         newAttendance.child("signout").setValue(("default"));
@@ -115,6 +120,7 @@ public class AvailClassesActivity extends AppCompatActivity {
                                 if (task.isSuccessful()){
                                     Intent sessionIntent = new Intent(AvailClassesActivity.this, ClassSessionActivity.class);
                                     sessionIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                    sessionIntent.putExtra("SigninKey",signKey);
                                     startActivity(sessionIntent);
                                     finish();
                                 }
