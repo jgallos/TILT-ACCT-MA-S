@@ -110,8 +110,11 @@ public class ClassSessionActivity extends AppCompatActivity {
                 updates.put("signout",timeHolder);
                 signoutDatabaseRef.updateChildren(updates);
 
-                newFeedback.child("feedbackLevel").setValue("5");
-                newFeedback.child("feedbackMessage").setValue(editMessage.getText().toString().trim()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                newFeedback.child("level").setValue("5");
+                newFeedback.child("status").setValue("initial");
+                newFeedback.child("username").setValue("x");
+                newFeedback.child("uid").setValue("x");
+                newFeedback.child("desc").setValue(editMessage.getText().toString().trim()).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {

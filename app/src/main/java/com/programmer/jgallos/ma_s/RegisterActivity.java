@@ -21,6 +21,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class RegisterActivity extends AppCompatActivity {
     private Button registerBtn;
     private EditText usernameField, emailField, passwordField;
@@ -72,6 +75,8 @@ public class RegisterActivity extends AppCompatActivity {
                                 String user_id =mAuth.getCurrentUser().getUid();
                                 DatabaseReference current_user_db = mDatabase.child(user_id);
                                 current_user_db.child("name").setValue(username);
+                                current_user_db.child("role").setValue("Student");
+
                                 Toast.makeText(RegisterActivity.this, "Registration Successful", Toast.LENGTH_SHORT).show();
                                 Intent regIntent = new Intent(RegisterActivity.this, MainActivity.class);
                                 startActivity(regIntent);
