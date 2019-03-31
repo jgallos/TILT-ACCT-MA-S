@@ -110,7 +110,9 @@ public class ViewFeedbackActivity extends AppCompatActivity {
                 viewHolder.mView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
+                        Intent singleActivity = new Intent(ViewFeedbackActivity.this, SingleFeedbackActivity.class);
+                        singleActivity.putExtra("FeedbackID", feedback_key);
+                        startActivity(singleActivity);
                     }
                 });
 
