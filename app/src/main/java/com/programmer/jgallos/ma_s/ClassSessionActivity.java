@@ -113,7 +113,7 @@ public class ClassSessionActivity extends AppCompatActivity {
                 newFeedback.child("level").setValue("5");
                 newFeedback.child("status").setValue("initial");
                 newFeedback.child("username").setValue("x");
-                newFeedback.child("uid").setValue("x");
+                newFeedback.child("uid").setValue(mCurrentUser.getUid());
                 newFeedback.child("desc").setValue(editMessage.getText().toString().trim()).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
@@ -145,6 +145,8 @@ public class ClassSessionActivity extends AppCompatActivity {
             startActivity(new Intent(ClassSessionActivity.this, ViewAcadActivity.class));
         } else if (id==R.id.action_viewAttendance) {
             startActivity(new Intent(ClassSessionActivity.this, ViewAttendanceActivity.class));
+        } else if (id==R.id.action_viewFeedback) {
+            startActivity(new Intent(ClassSessionActivity.this, ViewFeedbackActivity.class));
         }
         return super.onOptionsItemSelected(item);
     }

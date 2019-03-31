@@ -20,4 +20,5 @@
     <string name="title_activity_add_acad">Add Record</string>
     <string name="title_activity_view_acad">Academic Records</string>
     <string name="title_activity_view_attendance">Attendance</string>
+    <string name="title_activity_view_feedback">ViewFeedbackActivity</string>
 </resources>
