@@ -1,5 +1,6 @@
 package com.programmer.jgallos.ma_s;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -85,6 +86,12 @@ public class SingleFeedbackActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+    }
+
+    public void onClickReply(View view) {
+        Intent singleReply = new Intent(this, FeedbackReplyActivity.class);
+        singleReply.putExtra("SingleFeedbackID", post_key);
+        startActivity(singleReply);
     }
 
 }
