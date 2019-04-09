@@ -32,12 +32,15 @@ public class FeedbackReplyActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseUser mCurrentUser;
 
+    String signin_subject = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feedback_reply);
 
         feedback_key = getIntent().getExtras().getString("SingleFeedbackID");
+        signin_subject = getIntent().getExtras().getString("SigninSubject");
         feedbackID = (TextView)findViewById(R.id.textViewFID);
 
         editText_reply = (EditText)findViewById(R.id.editTextReply);
@@ -67,6 +70,7 @@ public class FeedbackReplyActivity extends AppCompatActivity {
 
                             Intent reply_back = new Intent(FeedbackReplyActivity.this, SingleFeedbackActivity.class);
                             reply_back.putExtra("FeedbackID",feedback_key);
+                            reply_back.putExtra("SigninSubject", signin_subject);
                             startActivity(reply_back);
                             finish();
                         }

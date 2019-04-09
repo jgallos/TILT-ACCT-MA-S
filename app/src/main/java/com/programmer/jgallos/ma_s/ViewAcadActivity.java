@@ -168,10 +168,10 @@ public class ViewAcadActivity extends AppCompatActivity {
             //startActivity(new Intent(ViewAcadActivity.this, AddAcadActivity.class));
 
 
-        } else if (id==R.id.action_viewAttendance2) {
+        } /* else if (id==R.id.action_viewAttendance2) {
             startActivity(new Intent(ViewAcadActivity.this, ViewAttendanceActivity.class));
             finish();
-        }
+        } */
         return super.onOptionsItemSelected(item);
     }
 

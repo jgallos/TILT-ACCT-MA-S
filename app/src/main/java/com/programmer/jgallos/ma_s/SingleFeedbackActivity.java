@@ -39,6 +39,8 @@ public class SingleFeedbackActivity extends AppCompatActivity {
 
     private DatabaseReference mDatabaseUsers;
 
+    String signin_subject = null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +53,8 @@ public class SingleFeedbackActivity extends AppCompatActivity {
         singleStatus = (TextView)findViewById(R.id.sfeedbackStatus);
         singleUID = (TextView)findViewById(R.id.sfeedbackUid);
 
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("Android Development_feedback");
+        signin_subject = getIntent().getExtras().getString("SigninSubject");
+        mDatabase = FirebaseDatabase.getInstance().getReference().child(signin_subject + "_feedback");
         post_key = getIntent().getExtras().getString("FeedbackID");
         //Toast.makeText(SinglePostActivity.this,post_key.toString(),Toast.LENGTH_LONG).show();
         replyBtn = (Button)findViewById(R.id.buttonReply);
@@ -114,7 +117,9 @@ public class SingleFeedbackActivity extends AppCompatActivity {
     public void onClickReply(View view) {
         Intent singleReply = new Intent(this, FeedbackReplyActivity.class);
         singleReply.putExtra("SingleFeedbackID", post_key);
+        singleReply.putExtra("SigninSubject", signin_subject);
         startActivity(singleReply);
+        finish();
     }
 
     @Override
