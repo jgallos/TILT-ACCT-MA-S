@@ -60,6 +60,7 @@ public class ClassSessionActivity extends AppCompatActivity {
     String signin_key = null;
     String signin_subject = null;
     String signin_time = null;
+    String signin_date = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,6 +95,7 @@ public class ClassSessionActivity extends AppCompatActivity {
         signin_key = getIntent().getExtras().getString("SigninKey");
         signin_subject = getIntent().getExtras().getString("SigninSubject");
         signin_time = getIntent().getExtras().getString("SigninTime");
+        signin_date = getIntent().getExtras().getString("SigninDate");
 
         signSubject.setText("Subject: " + signin_subject);
         signTime.setText("Sign-in: " + signin_time);
@@ -158,11 +160,13 @@ public class ClassSessionActivity extends AppCompatActivity {
         if (id==R.id.action_addAcad) {
             Intent addAcadIntent = new Intent(ClassSessionActivity.this, AddAcadActivity.class);
             addAcadIntent.putExtra("SigninSubject",signin_subject);
+            addAcadIntent.putExtra("SigninDate", signin_date);
             startActivity(addAcadIntent);
             //startActivity(new Intent(ClassSessionActivity.this, AddAcadActivity.class));
         } else if (id==R.id.action_viewAcad) {
             Intent viewAcadIntent = new Intent(ClassSessionActivity.this, ViewAcadActivity.class);
             viewAcadIntent.putExtra("SigninSubject", signin_subject);
+            viewAcadIntent.putExtra("SigninDate", signin_date);
             startActivity(viewAcadIntent);
             //startActivity(new Intent(ClassSessionActivity.this, ViewAcadActivity.class));
         } else if (id==R.id.action_viewAttendance) {

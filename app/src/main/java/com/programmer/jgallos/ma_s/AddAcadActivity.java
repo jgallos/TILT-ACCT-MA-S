@@ -51,6 +51,7 @@ public class AddAcadActivity extends AppCompatActivity {
     private FirebaseUser mCurrentUser;
 
     String logged_subject = null;
+    String signin_date = null;
 
     private static final String TAG = AcadRecords.class.getSimpleName();
 
@@ -72,6 +73,7 @@ public class AddAcadActivity extends AppCompatActivity {
         mCurrentUser = mAuth.getCurrentUser();
         mDatabaseUsers = FirebaseDatabase.getInstance().getReference().child("Users").child(mCurrentUser.getUid());
 
+        signin_date = getIntent().getExtras().getString("SigninDate");
 
         imageAcad.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,6 +124,7 @@ public class AddAcadActivity extends AppCompatActivity {
                                 mDatabaseUsers.addValueEventListener((new ValueEventListener() {
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                        newAcad.child("date").setValue(signin_date);
                                         newAcad.child("title").setValue(recordTitle);
                                         newAcad.child("desc").setValue(recordDesc);
                                         newAcad.child("imageUrl").setValue(downloadUrl.toString());

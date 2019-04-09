@@ -102,9 +102,10 @@ public class AvailClassesActivity extends AppCompatActivity {
                         String timeHolder;
                         final String signKey;
                         final String timeHolderBuff;
+                        final String timeHolderDateBuff;
 
                         timeHolder = updateTime(1);
-
+                        timeHolderDateBuff = timeHolder;
 
                         newAttendance.child("date").setValue(timeHolder);
                         signKey = newAttendance.getKey();
@@ -124,6 +125,7 @@ public class AvailClassesActivity extends AppCompatActivity {
                                     sessionIntent.putExtra("SigninKey",signKey);
                                     sessionIntent.putExtra("SigninSubject", subject);
                                     sessionIntent.putExtra("SigninTime",timeHolderBuff);
+                                    sessionIntent.putExtra("SigninDate", timeHolderDateBuff);
                                     startActivity(sessionIntent);
                                     finish();
                                 }

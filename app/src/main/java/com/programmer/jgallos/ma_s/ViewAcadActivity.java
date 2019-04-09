@@ -39,6 +39,7 @@ public class ViewAcadActivity extends AppCompatActivity {
     private FirebaseUser mCurrentUser;
 
     String acad_subject = null;
+    String signin_date = null;
 
 
     @Override
@@ -55,6 +56,7 @@ public class ViewAcadActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
 
         acad_subject = getIntent().getExtras().getString("SigninSubject");
+        signin_date = getIntent().getExtras().getString("SigninDate");
         //mDatabase = FirebaseDatabase.getInstance().getReference().child("Android_Development");
         mDatabase = FirebaseDatabase.getInstance().getReference().child(acad_subject + "_storage");
         mAuth = FirebaseAuth.getInstance();
@@ -163,6 +165,7 @@ public class ViewAcadActivity extends AppCompatActivity {
         if (id==R.id.action_addAcad2) {
             Intent addAcadIntent = new Intent(ViewAcadActivity.this, AddAcadActivity.class);
             addAcadIntent.putExtra("SigninSubject",acad_subject);
+            addAcadIntent.putExtra("SigninDate", signin_date);
             startActivity(addAcadIntent);
             finish();
             //startActivity(new Intent(ViewAcadActivity.this, AddAcadActivity.class));
