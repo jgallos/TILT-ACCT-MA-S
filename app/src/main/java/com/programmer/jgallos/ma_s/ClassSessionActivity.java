@@ -44,6 +44,8 @@ public class ClassSessionActivity extends AppCompatActivity {
 
     private EditText editMessage;
     private Button signoutBtn;
+    private TextView signSubject;
+    private TextView signTime;
 
     private FirebaseDatabase database;
     private DatabaseReference databaseRef;
@@ -57,6 +59,7 @@ public class ClassSessionActivity extends AppCompatActivity {
 
     String signin_key = null;
     String signin_subject = null;
+    String signin_time = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,8 +86,17 @@ public class ClassSessionActivity extends AppCompatActivity {
 
         signoutBtn = (Button)findViewById(R.id.signoutBtn);
         editMessage = (EditText)findViewById(R.id.editMessage);
+        signSubject = (TextView)findViewById(R.id.subjectText);
+        signTime = (TextView)findViewById(R.id.signinText);
+
+
+
         signin_key = getIntent().getExtras().getString("SigninKey");
         signin_subject = getIntent().getExtras().getString("SigninSubject");
+        signin_time = getIntent().getExtras().getString("SigninTime");
+
+        signSubject.setText("Subject: " + signin_subject);
+        signTime.setText("Sign-in: " + signin_time);
 
         databaseRef = database.getInstance().getReference().child(signin_subject + "_feedback");
         sessDatabaseRef = database.getInstance().getReference().child("Class Signins");
@@ -95,6 +107,8 @@ public class ClassSessionActivity extends AppCompatActivity {
 
 
         final DatabaseReference newSignin = sessDatabaseRef.push();
+
+
 
         newSignin.child("class").setValue(signin_subject);
         newSignin.child("userid").setValue(mCurrentUser.getUid());

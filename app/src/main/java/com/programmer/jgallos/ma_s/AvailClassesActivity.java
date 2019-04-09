@@ -101,7 +101,7 @@ public class AvailClassesActivity extends AppCompatActivity {
 
                         String timeHolder;
                         final String signKey;
-
+                        final String timeHolderBuff;
 
                         timeHolder = updateTime(1);
 
@@ -110,6 +110,7 @@ public class AvailClassesActivity extends AppCompatActivity {
                         signKey = newAttendance.getKey();
                         //Toast.makeText(AvailClassesActivity.this,signKey.toString(),Toast.LENGTH_LONG).show();
                         timeHolder = updateTime(2);
+                        timeHolderBuff = timeHolder;
                         newAttendance.child("signin").setValue(timeHolder);
                         newAttendance.child("signout").setValue(("default"));
 
@@ -122,6 +123,7 @@ public class AvailClassesActivity extends AppCompatActivity {
                                     sessionIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                     sessionIntent.putExtra("SigninKey",signKey);
                                     sessionIntent.putExtra("SigninSubject", subject);
+                                    sessionIntent.putExtra("SigninTime",timeHolderBuff);
                                     startActivity(sessionIntent);
                                     finish();
                                 }
