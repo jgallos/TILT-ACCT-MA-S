@@ -56,6 +56,7 @@ public class ClassSessionActivity extends AppCompatActivity {
     private String timeHolder;
 
     String signin_key = null;
+    String signin_subject = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +75,7 @@ public class ClassSessionActivity extends AppCompatActivity {
             }
         });
 
-        Spinner spinner = (Spinner) findViewById(R.id.spinnerLevel);
+        final Spinner spinner = (Spinner) findViewById(R.id.spinnerLevel);
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.feedback_level45, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -83,10 +84,11 @@ public class ClassSessionActivity extends AppCompatActivity {
         signoutBtn = (Button)findViewById(R.id.signoutBtn);
         editMessage = (EditText)findViewById(R.id.editMessage);
         signin_key = getIntent().getExtras().getString("SigninKey");
+        signin_subject = getIntent().getExtras().getString("SigninSubject");
 
-        databaseRef = database.getInstance().getReference().child("Android Development_feedback");
+        databaseRef = database.getInstance().getReference().child(signin_subject + "_feedback");
         sessDatabaseRef = database.getInstance().getReference().child("Class Signins");
-        signoutDatabaseRef = database.getInstance().getReference().child("Android Development_attendance").child(signin_key);
+        signoutDatabaseRef = database.getInstance().getReference().child(signin_subject + "_attendance").child(signin_key);
         mAuth = FirebaseAuth.getInstance();
         mCurrentUser = mAuth.getCurrentUser();
         mDatabaseUsers = FirebaseDatabase.getInstance().getReference().child("Users").child(mCurrentUser.getUid());
@@ -94,7 +96,7 @@ public class ClassSessionActivity extends AppCompatActivity {
 
         final DatabaseReference newSignin = sessDatabaseRef.push();
 
-        newSignin.child("class").setValue("Android Development");
+        newSignin.child("class").setValue(signin_subject);
         newSignin.child("userid").setValue(mCurrentUser.getUid());
         newSignin.child("signinkey").setValue(signin_key);
 
@@ -110,7 +112,7 @@ public class ClassSessionActivity extends AppCompatActivity {
                 updates.put("signout",timeHolder);
                 signoutDatabaseRef.updateChildren(updates);
 
-                newFeedback.child("level").setValue("5");
+                newFeedback.child("level").setValue(spinner.getSelectedItem().toString());
                 newFeedback.child("status").setValue("initial");
                 newFeedback.child("username").setValue("x");
                 newFeedback.child("uid").setValue(mCurrentUser.getUid());
@@ -140,13 +142,25 @@ public class ClassSessionActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id==R.id.action_addAcad) {
-            startActivity(new Intent(ClassSessionActivity.this, AddAcadActivity.class));
+            Intent addAcadIntent = new Intent(ClassSessionActivity.this, AddAcadActivity.class);
+            addAcadIntent.putExtra("SigninSubject",signin_subject);
+            startActivity(addAcadIntent);
+            //startActivity(new Intent(ClassSessionActivity.this, AddAcadActivity.class));
         } else if (id==R.id.action_viewAcad) {
-            startActivity(new Intent(ClassSessionActivity.this, ViewAcadActivity.class));
+            Intent viewAcadIntent = new Intent(ClassSessionActivity.this, ViewAcadActivity.class);
+            viewAcadIntent.putExtra("SigninSubject", signin_subject);
+            startActivity(viewAcadIntent);
+            //startActivity(new Intent(ClassSessionActivity.this, ViewAcadActivity.class));
         } else if (id==R.id.action_viewAttendance) {
-            startActivity(new Intent(ClassSessionActivity.this, ViewAttendanceActivity.class));
+            Intent viewAttendanceIntent = new Intent(ClassSessionActivity.this, ViewAttendanceActivity.class);
+            viewAttendanceIntent.putExtra("SigninSubject", signin_subject);
+            startActivity(viewAttendanceIntent);
+            //startActivity(new Intent(ClassSessionActivity.this, ViewAttendanceActivity.class));
         } else if (id==R.id.action_viewFeedback) {
-            startActivity(new Intent(ClassSessionActivity.this, ViewFeedbackActivity.class));
+            Intent viewFeedbackIntent = new Intent(ClassSessionActivity.this, ViewFeedbackActivity.class);
+            viewFeedbackIntent.putExtra("SigninSubject", signin_subject);
+            startActivity(viewFeedbackIntent);
+            //startActivity(new Intent(ClassSessionActivity.this, ViewFeedbackActivity.class));
         }
         return super.onOptionsItemSelected(item);
     }

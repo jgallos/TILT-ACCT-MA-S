@@ -121,6 +121,7 @@ public class AvailClassesActivity extends AppCompatActivity {
                                     Intent sessionIntent = new Intent(AvailClassesActivity.this, ClassSessionActivity.class);
                                     sessionIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                     sessionIntent.putExtra("SigninKey",signKey);
+                                    sessionIntent.putExtra("SigninSubject", subject);
                                     startActivity(sessionIntent);
                                     finish();
                                 }

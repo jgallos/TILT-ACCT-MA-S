@@ -38,6 +38,8 @@ public class ViewAcadActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseUser mCurrentUser;
 
+    String acad_subject = null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +54,9 @@ public class ViewAcadActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
 
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("Android_Development");
+        acad_subject = getIntent().getExtras().getString("SigninSubject");
+        //mDatabase = FirebaseDatabase.getInstance().getReference().child("Android_Development");
+        mDatabase = FirebaseDatabase.getInstance().getReference().child(acad_subject + "_storage");
         mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -157,11 +161,16 @@ public class ViewAcadActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id==R.id.action_addAcad2) {
-            startActivity(new Intent(ViewAcadActivity.this, AddAcadActivity.class));
+            Intent addAcadIntent = new Intent(ViewAcadActivity.this, AddAcadActivity.class);
+            addAcadIntent.putExtra("SigninSubject",acad_subject);
+            startActivity(addAcadIntent);
+            finish();
+            //startActivity(new Intent(ViewAcadActivity.this, AddAcadActivity.class));
 
 
         } else if (id==R.id.action_viewAttendance2) {
             startActivity(new Intent(ViewAcadActivity.this, ViewAttendanceActivity.class));
+            finish();
         }
         return super.onOptionsItemSelected(item);
     }
