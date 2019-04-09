@@ -50,6 +50,8 @@ public class AddAcadActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseUser mCurrentUser;
 
+    String logged_subject = null;
+
     private static final String TAG = AcadRecords.class.getSimpleName();
 
 
@@ -64,7 +66,8 @@ public class AddAcadActivity extends AppCompatActivity {
         editDesc = (EditText)findViewById(R.id.editDesc);
         editTitle = (EditText)findViewById(R.id.editTitle);
         storage = FirebaseStorage.getInstance().getReference();
-        databaseRef = database.getInstance().getReference().child("Android_Development");
+        logged_subject = getIntent().getExtras().getString("SigninSubject");
+        databaseRef = database.getInstance().getReference().child(logged_subject + "_storage");
         mAuth = FirebaseAuth.getInstance();
         mCurrentUser = mAuth.getCurrentUser();
         mDatabaseUsers = FirebaseDatabase.getInstance().getReference().child("Users").child(mCurrentUser.getUid());
@@ -93,7 +96,9 @@ public class AddAcadActivity extends AppCompatActivity {
                 final String recordDesc = editDesc.getText().toString().trim();
 
                 if (!TextUtils.isEmpty(recordTitle) && !TextUtils.isEmpty(recordDesc)){
-                    final StorageReference filepath = storage.child("Android_Development_images").child(uri.getLastPathSegment());
+                    final StorageReference filepath = storage.child(logged_subject + "_images").child(uri.getLastPathSegment());
+
+                    //final StorageReference filepath = storage.child("Android_Development_images").child(uri.getLastPathSegment());
 
                     UploadTask uploadTask = filepath.putFile(uri);
 
@@ -126,7 +131,9 @@ public class AddAcadActivity extends AppCompatActivity {
                                                     @Override
                                                     public void onComplete(@NonNull Task<Void> task) {
                                                         if (task.isSuccessful()) {
-                                                            Intent intent = new Intent(AddAcadActivity.this, ClassSessionActivity.class);
+                                                            //Intent intent = new Intent(AddAcadActivity.this, ClassSessionActivity.class);
+                                                            Intent intent = new Intent(AddAcadActivity.this, ViewAcadActivity.class);
+                                                            intent.putExtra("SigninSubject",logged_subject);
                                                             startActivity(intent);
                                                             finish();
                                                         }
