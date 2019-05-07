@@ -16,6 +16,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -39,6 +41,7 @@ public class SingleFeedbackActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private DatabaseReference mReplyDatabase;
     private DatabaseReference escalateDatabaseRef;
+    private DatabaseReference escalateMarkerRef;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseUser mCurrentUser;
 
@@ -63,6 +66,7 @@ public class SingleFeedbackActivity extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance().getReference().child(signin_subject + "_feedback");
         post_key = getIntent().getExtras().getString("FeedbackID");
         escalateDatabaseRef = FirebaseDatabase.getInstance().getReference().child(signin_subject + "_feedback").child(post_key);
+        escalateMarkerRef = FirebaseDatabase.getInstance().getReference().child("Reply_" + post_key);
         //Toast.makeText(SinglePostActivity.this,post_key.toString(),Toast.LENGTH_LONG).show();
         replyBtn = (Button)findViewById(R.id.buttonReply);
         scalateBtn = (Button)findViewById(R.id.buttonScalate);
@@ -114,20 +118,34 @@ public class SingleFeedbackActivity extends AppCompatActivity {
         scalateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               Map<String, Object> updateLevel = new HashMap<String, Object>();
+               final DatabaseReference newMarker = escalateMarkerRef.push();
+               String newLevel = null;
+                Map<String, Object> updateLevel = new HashMap<String, Object>();
 
                 if (uniLevel.equals("DEFCON 5")) {
                     updateLevel.put("level", "DEFCON 4");
+                    newLevel = "DEFCON 4";
                 } else if (uniLevel.equals("DEFCON 4")) {
                     updateLevel.put("level", "DEFCON 3");
+                    newLevel = "DEFCON 3";
                 } else if (uniLevel.equals("DEFCON 3")) {
                     updateLevel.put("level", "DEFCON 2");
+                    newLevel = "DEFCON 2";
                 } else if (uniLevel.equals("DEFCON 2")){
                     updateLevel.put("level", "DEFCON 1");
+                    newLevel = "DEFCON 1";
                 }
-               //updateLevel.put("level", "DEFCON 1");
+
                 if (!uniLevel.equals("DEFCON 1")) {
                     escalateDatabaseRef.updateChildren(updateLevel);
+                    newMarker.child("reply").setValue("Feedback escalated to: " + newLevel);
+                    newMarker.child("date").setValue("x");
+                    newMarker.child("time").setValue("x").addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+
+                        }
+                    });
                 }
 
 
