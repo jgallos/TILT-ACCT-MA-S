@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
@@ -24,6 +25,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class SingleFeedbackActivity extends AppCompatActivity {
 
     private TextView singleDate, singleLevel, singleDesc, singleStatus, singleUID;
@@ -34,12 +38,14 @@ public class SingleFeedbackActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private DatabaseReference mReplyDatabase;
+    private DatabaseReference escalateDatabaseRef;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseUser mCurrentUser;
 
     private DatabaseReference mDatabaseUsers;
 
     String signin_subject = null;
+    String uniLevel = null;
 
 
     @Override
@@ -56,6 +62,7 @@ public class SingleFeedbackActivity extends AppCompatActivity {
         signin_subject = getIntent().getExtras().getString("SigninSubject");
         mDatabase = FirebaseDatabase.getInstance().getReference().child(signin_subject + "_feedback");
         post_key = getIntent().getExtras().getString("FeedbackID");
+        escalateDatabaseRef = FirebaseDatabase.getInstance().getReference().child(signin_subject + "_feedback").child(post_key);
         //Toast.makeText(SinglePostActivity.this,post_key.toString(),Toast.LENGTH_LONG).show();
         replyBtn = (Button)findViewById(R.id.buttonReply);
         scalateBtn = (Button)findViewById(R.id.buttonScalate);
@@ -77,6 +84,8 @@ public class SingleFeedbackActivity extends AppCompatActivity {
                 String feedback_status = (String) dataSnapshot.child("status").getValue();
                 String feedback_uid = (String) dataSnapshot.child("uid").getValue();
                 String feedback_username = (String) dataSnapshot.child("username").getValue();
+
+                uniLevel = feedback_level;
 
                 singleDate.setText("");
                 singleLevel.setText("Level: " + feedback_level);
@@ -101,6 +110,29 @@ public class SingleFeedbackActivity extends AppCompatActivity {
 
             }
         };
+
+        scalateBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               Map<String, Object> updateLevel = new HashMap<String, Object>();
+
+                if (uniLevel.equals("DEFCON 5")) {
+                    updateLevel.put("level", "DEFCON 4");
+                } else if (uniLevel.equals("DEFCON 4")) {
+                    updateLevel.put("level", "DEFCON 3");
+                } else if (uniLevel.equals("DEFCON 3")) {
+                    updateLevel.put("level", "DEFCON 2");
+                } else if (uniLevel.equals("DEFCON 2")){
+                    updateLevel.put("level", "DEFCON 1");
+                }
+               //updateLevel.put("level", "DEFCON 1");
+                if (!uniLevel.equals("DEFCON 1")) {
+                    escalateDatabaseRef.updateChildren(updateLevel);
+                }
+
+
+            }
+        });
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
