@@ -152,6 +152,27 @@ public class SingleFeedbackActivity extends AppCompatActivity {
             }
         });
 
+        resolvedBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final DatabaseReference newMarker = escalateMarkerRef.push();
+                Map<String, Object> updateStatus = new HashMap<String, Object>();
+
+                updateStatus.put("status", "Resolved.");
+                escalateDatabaseRef.updateChildren(updateStatus);
+
+                newMarker.child("reply").setValue("Feedback marked as resolved.");
+                newMarker.child("date").setValue("x");
+                newMarker.child("time").setValue("x").addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+
+                    }
+                });
+
+            }
+        });
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
