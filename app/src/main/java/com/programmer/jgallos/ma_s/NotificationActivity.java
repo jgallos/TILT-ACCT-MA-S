@@ -1,6 +1,7 @@
 package com.programmer.jgallos.ma_s;
 
 import android.app.Notification;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -13,6 +14,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -41,6 +44,8 @@ public class NotificationActivity extends AppCompatActivity {
 
         mNotifDatabase = FirebaseDatabase.getInstance().getReference().child("Notifications");
 
+        //mCurrentUser = mAuth.getCurrentUser();
+
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -59,8 +64,30 @@ public class NotificationActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                //        .setAction("Action", null).show();
+
+                final String stringNotif = "Sample notif";
+                final DatabaseReference newNotif = mNotifDatabase.push();
+
+                newNotif.child("nnotif").setValue(stringNotif);
+                newNotif.child("ndate").setValue("x");
+                newNotif.child("ntime").setValue("x").addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+
+                            //startActivity(new Intent(FeedbackReplyActivity.this, ViewFeedbackActivity.class));
+
+                            //Intent notif_back = new Intent(FeedbackReplyActivity.this, SingleFeedbackActivity.class);
+                            //reply_back.putExtra("FeedbackID",feedback_key);
+                            //reply_back.putExtra("SigninSubject", signin_subject);
+                            //startActivity(reply_back);
+                            //finish();
+                        }
+                    }
+                });
+
             }
         });
 
