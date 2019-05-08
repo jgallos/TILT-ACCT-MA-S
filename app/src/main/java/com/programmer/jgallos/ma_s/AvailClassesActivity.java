@@ -114,6 +114,7 @@ public class AvailClassesActivity extends AppCompatActivity {
                         timeHolderBuff = timeHolder;
                         newAttendance.child("signin").setValue(timeHolder);
                         newAttendance.child("signout").setValue(("default"));
+                        newAttendance.child("name").setValue(dataSnapshot.child("name").getValue());
 
                         //newAttendance.child("signin_time").setValue(ServerValue.TIMESTAMP);
                         newAttendance.child("uid").setValue(mCurrentUser.getUid()).addOnCompleteListener(new OnCompleteListener<Void>() {
