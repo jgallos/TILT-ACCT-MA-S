@@ -129,7 +129,7 @@ public class ClassSessionActivity extends AppCompatActivity {
                 signoutDatabaseRef.updateChildren(updates);
 
                 newFeedback.child("level").setValue(spinner.getSelectedItem().toString());
-                newFeedback.child("status").setValue("initial");
+                newFeedback.child("status").setValue("Unresolved");
                 newFeedback.child("username").setValue("x");
                 newFeedback.child("uid").setValue(mCurrentUser.getUid());
                 newFeedback.child("desc").setValue(editMessage.getText().toString().trim()).addOnCompleteListener(new OnCompleteListener<Void>() {
