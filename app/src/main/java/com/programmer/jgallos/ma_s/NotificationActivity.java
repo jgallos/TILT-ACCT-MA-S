@@ -107,7 +107,7 @@ public class NotificationActivity extends AppCompatActivity {
                             .setTicker("Program designed by: J.Gallos")
                             // .setPriority(Notification.IMPORTANCE_HIGH)
                             .setContentTitle("TILT-ACCT System")
-                            .setContentText("New notification received.")
+                            .setContentText("New alert received.")
                             .setContentInfo("Info");
 
                     notificationManager.notify(/*notification id*/1, notificationBuilder.build());
@@ -126,7 +126,7 @@ public class NotificationActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+       /* FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -155,7 +155,7 @@ public class NotificationActivity extends AppCompatActivity {
                 });
 
             }
-        });
+        }); */
 
 
     }
@@ -213,12 +213,12 @@ public class NotificationActivity extends AppCompatActivity {
 
         public void setNdate(String ndate) {
             TextView notif_date = mnView.findViewById(R.id.textViewNotifDate);
-            notif_date.setText("Date: " + ndate);
+            notif_date.setText(ndate);
         }
 
         public void setNtime(String ntime) {
             TextView notif_time = mnView.findViewById(R.id.textViewNotifTime);
-            notif_time.setText("Time: " + ntime);
+            notif_time.setText(ntime);
         }
 
         public void setNnotif(String nnotif) {
