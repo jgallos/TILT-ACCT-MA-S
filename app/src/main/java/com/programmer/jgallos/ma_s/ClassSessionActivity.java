@@ -138,6 +138,7 @@ public class ClassSessionActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             startActivity(new Intent(ClassSessionActivity.this,MainActivity.class));
                             finish();
+
                         }
                     }
                 });
