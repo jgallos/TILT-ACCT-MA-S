@@ -95,7 +95,7 @@ public class ViewAttendanceActivity extends AppCompatActivity {
                viewHolder.setDate(model.getDate());
                viewHolder.setSignin(model.getSignin());
                viewHolder.setSignout(model.getSignout());
-               viewHolder.setUid(model.getUid());
+               //viewHolder.setUid(model.getUid());
 
                //Toast.makeText(ViewAttendanceActivity.this, model.getSignout().toString(), Toast.LENGTH_LONG).show();
                 viewHolder.mView.setOnClickListener(new View.OnClickListener() {
@@ -131,10 +131,10 @@ public class ViewAttendanceActivity extends AppCompatActivity {
             TextView attendance_signout = mView.findViewById(R.id.textSignoutTime);
             attendance_signout.setText("Sign-out Time: " + signout);
         }
-        public void setUid(String uid) {
-            TextView attendance_uid = mView.findViewById(R.id.textUid);
-            attendance_uid.setText("User Id: " + uid);
-        }
+       // public void setUid(String uid) {
+       //     TextView attendance_uid = mView.findViewById(R.id.textUid);
+       //     attendance_uid.setText("User Id: " + uid);
+       // }
 
 
     }

@@ -28,7 +28,7 @@
             android:id="@+id/textView6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginLeft="5dp"
             android:text="You are currently signed-in to:"
             android:textColor="@color/common_google_signin_btn_text_light_pressed" />
 
@@ -36,12 +36,15 @@
             android:id="@+id/subjectText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
             android:text="Subject:" />
 
         <TextView
             android:id="@+id/signinText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginBottom="5dp"
             android:text="Sign-in time:" />
 
         <ImageButton
@@ -60,6 +63,7 @@
                 android:id="@+id/textView7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
                 android:layout_weight="1"
                 android:text="Feedback Level" />
 

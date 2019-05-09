@@ -106,7 +106,7 @@ public class ViewFeedbackActivity extends AppCompatActivity {
                 viewHolder.setDesc(model.getDesc());
 
                 viewHolder.setStatus(model.getStatus());
-                viewHolder.setUid(model.getUid());
+                //viewHolder.setUid(model.getUid());
 
                 // viewHolder.setImageUrl(getApplicationContext(), model.getImageUrl());
                 //Toast.makeText(ViewAcadActivity.this, model.getImageUrl().toString(), Toast.LENGTH_LONG).show();
@@ -150,10 +150,10 @@ public class ViewFeedbackActivity extends AppCompatActivity {
             feedback_status.setText("Status: " + status);
 
         }
-        public void setUid(String uid) {
+       /* public void setUid(String uid) {
             TextView feedback_uid = mView.findViewById(R.id.feedbackUid);
             feedback_uid.setText("Id (remove later): " + uid);
-        }
+        } */
 
 
 

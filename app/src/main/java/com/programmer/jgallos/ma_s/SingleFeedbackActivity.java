@@ -56,11 +56,11 @@ public class SingleFeedbackActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_single_feedback);
 
-        singleDate = (TextView)findViewById(R.id.sfeedbackDate);
+        //singleDate = (TextView)findViewById(R.id.sfeedbackDate);
         singleLevel = (TextView)findViewById(R.id.sfeedbackLevel);
         singleDesc = (TextView)findViewById(R.id.sfeedbackDesc);
         singleStatus = (TextView)findViewById(R.id.sfeedbackStatus);
-        singleUID = (TextView)findViewById(R.id.sfeedbackUid);
+        //singleUID = (TextView)findViewById(R.id.sfeedbackUid);
 
         signin_subject = getIntent().getExtras().getString("SigninSubject");
         mDatabase = FirebaseDatabase.getInstance().getReference().child(signin_subject + "_feedback");
@@ -91,11 +91,11 @@ public class SingleFeedbackActivity extends AppCompatActivity {
 
                 uniLevel = feedback_level;
 
-                singleDate.setText("");
+               // singleDate.setText("");
                 singleLevel.setText("Level: " + feedback_level);
                 singleDesc.setText("Feedback: " + feedback_desc);
                 singleStatus.setText("Status: " + feedback_status);
-                singleUID.setText("(remove later): " + feedback_uid);
+               // singleUID.setText("(remove later): " + feedback_uid);
                 if (mAuth.getCurrentUser().getUid().equals(feedback_uid)){
 
                     replyBtn.setVisibility(View.VISIBLE);
