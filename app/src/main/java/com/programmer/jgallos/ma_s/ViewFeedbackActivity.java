@@ -117,7 +117,7 @@ public class ViewFeedbackActivity extends AppCompatActivity {
                         singleActivity.putExtra("FeedbackID", feedback_key);
                         singleActivity.putExtra("SigninSubject", signin_subject);
                         startActivity(singleActivity);
-                        finish();
+                        //finish();
                     }
                 });
 

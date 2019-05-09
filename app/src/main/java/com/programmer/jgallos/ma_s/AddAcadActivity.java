@@ -135,9 +135,10 @@ public class AddAcadActivity extends AppCompatActivity {
                                                     public void onComplete(@NonNull Task<Void> task) {
                                                         if (task.isSuccessful()) {
                                                             //Intent intent = new Intent(AddAcadActivity.this, ClassSessionActivity.class);
-                                                            Intent intent = new Intent(AddAcadActivity.this, ViewAcadActivity.class);
-                                                            intent.putExtra("SigninSubject",logged_subject);
-                                                            startActivity(intent);
+                                                            //Intent intent = new Intent(AddAcadActivity.this, ViewAcadActivity.class);
+                                                            //intent.putExtra("SigninSubject",logged_subject);
+                                                            //startActivity(intent);
+                                                            Toast.makeText(AddAcadActivity.this, "Record successfully uploaded!",Toast.LENGTH_SHORT).show();
                                                             finish();
                                                         }
                                                     }

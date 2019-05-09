@@ -167,7 +167,7 @@ public class ViewAcadActivity extends AppCompatActivity {
             addAcadIntent.putExtra("SigninSubject",acad_subject);
             addAcadIntent.putExtra("SigninDate", signin_date);
             startActivity(addAcadIntent);
-            finish();
+            //finish();
             //startActivity(new Intent(ViewAcadActivity.this, AddAcadActivity.class));
 
 

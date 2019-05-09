@@ -191,7 +191,7 @@ public class SingleFeedbackActivity extends AppCompatActivity {
         singleReply.putExtra("SingleFeedbackID", post_key);
         singleReply.putExtra("SigninSubject", signin_subject);
         startActivity(singleReply);
-        finish();
+        //finish();
     }
 
     @Override
