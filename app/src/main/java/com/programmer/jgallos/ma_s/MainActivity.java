@@ -1,3 +1,10 @@
+/*
+TILT-ACCT - Transparency in Learning and Teaching through Android and Cloud Computing Technologies
+Program Author: Joseph M. Gallos
+Date: May 2019
+Software License: GNU-General Public License
+This software
+*/
 package com.programmer.jgallos.ma_s;
 
 import android.app.Notification;
